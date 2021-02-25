@@ -5,11 +5,35 @@
     "dev": "vite",
     "build": "vite build"
   },
+  "bugs": {
+    "url": "https://gitee.com/langjhowe/animated-mesh-lines/issues"
+  },
+  "homepage": "https://gitee.com/langjhowe/animated-mesh-lines#readme",
   "dependencies": {
     "vue": "^3.0.4"
   },
   "devDependencies": {
-    "vite": "^1.0.0-rc.13",
-    "@vue/compiler-sfc": "^3.0.4"
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "@vue/compiler-sfc": "^3.0.4",
+    "eslint": "^7.20.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-vue": "^7.6.0",
+    "husky": "^5.1.1",
+    "lint-staged": "^10.5.4",
+    "typescript": "^4.2.2",
+    "vite": "^1.0.0-rc.13"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.1",
+    "utf-8-validate": "^5.0.2"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js,vue,tsx}": [
+      "eslint --fix"
+    ]
   }
 }

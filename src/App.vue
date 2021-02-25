@@ -3,13 +3,11 @@
   <HelloWorld msg="Hello Vue 3.0 + Vite" />
 </template>
 
-<script>
+<script lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-
+let a = 'a'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { HelloWorld }
 }
 </script>
