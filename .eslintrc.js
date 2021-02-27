@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-essential'
+    // 'plugin:@typescript-eslint/recommended'
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -18,6 +19,13 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    '@typescript-eslint/no-var-requires': [0],
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/semi': [
+      'error',
+      'never'
+    ],
     indent: [
       'error',
       2,
@@ -32,7 +40,7 @@ module.exports = {
     quotes: ['error', 'single'],
     'no-trailing-spaces': 'error',
     'key-spacing': ['error', { beforeColon: false }],
-    'no-unused-vars': ['warn'],
+    'no-unused-vars': ['off'],
     'comma-dangle': 'error',
     'comma-spacing': ['error', { before: false, after: true }],
     'comma-style': ['error', 'last'],
@@ -56,6 +64,7 @@ module.exports = {
     'arrow-spacing': 'error',
     'no-confusing-arrow': 'error',
     'no-duplicate-imports': 'error',
+    'no-dupe-class-members': 'off',
     // vue
     'vue/html-indent': ['error', 2, {
       attribute: 1,
