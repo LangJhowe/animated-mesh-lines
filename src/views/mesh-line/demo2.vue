@@ -1,5 +1,5 @@
 <template>
-  <div class="demo1 demo-page" :id="'demo1'" v-resize="handleResize" style="transform: matrix(1, 0, 0, 1, 0, -300);"></div>
+  <div class="demo2 demo-page" :id="'demo2'" v-resize="handleResize"></div>
 </template>
 
 <script lang="ts">
@@ -12,27 +12,53 @@ import AnimatedMeshLine from '@/libs/three/AnimatedMeshLine.class'
 import LineGenerator from '@/libs/three/LineGenerator.class'
 import { useThree } from '@/composition/three'
 import getRandomFloat from '@/libs/three/utils/getRandomFloat'
+import getRandomItem from '@/libs/three/utils/getRandomItem'
 import { TimelineLite, Power2, Power3 } from 'gsap'
 import FullScreenInBackground from '@/libs/three/decorators/FullScreenInBackground'
 import HandleOrbitControl from '@/libs/three/decorators/HandleOrbitControl'
 
-@FullScreenInBackground({ id: 'demo1' })
+const COLORS = ['#4062BB', '#52489C', '#59C3C3', '#F45B69', '#F45B69'].map((col) => new THREE.Color(col))
+
+
+@FullScreenInBackground({ id: 'demo2' })
 @HandleOrbitControl()
 class CustomEngine extends Engine {}
 class CustomLineGenerator extends LineGenerator {
   addLine (props?: Record<string, any>): AnimatedMeshLine {
+    // return super.addLine({
+    //   length: getRandomFloat(5, 10),
+    //   visibleLength: getRandomFloat(0.05, 0.2),
+    //   speed: getRandomFloat(0.01, 0.02),
+    //   position: new Vector3(
+    //     getRandomFloat(-4, 8),
+    //     getRandomFloat(-3, 5),
+    //     getRandomFloat(-2, 5)
+    //   ),
+    // })
     return super.addLine({
-      length: getRandomFloat(10, 20),
+      length: getRandomFloat(8, 15),
       visibleLength: getRandomFloat(0.05, 0.2),
-      speed: getRandomFloat(0.01, 0.02),
       position: new THREE.Vector3(
-        getRandomFloat(-5, 10),
-        getRandomFloat(-4, 5),
-        getRandomFloat(-3, 5)
-      )
+        (Math.random() - 0.5) * 1.5,
+        Math.random() - 1,
+        (Math.random() - 0.5) * 2
+      ).multiplyScalar(getRandomFloat(5, 20)),
+      turbulence: new THREE.Vector3(
+        getRandomFloat(-2, 2),
+        getRandomFloat(0, 2),
+        getRandomFloat(-2, 2)
+      ),
+      orientation: new THREE.Vector3(
+        getRandomFloat(-0.8, 0.8),
+        1,
+        1
+      ),
+      speed: getRandomFloat(0.004, 0.008),
+      color: getRandomItem(COLORS)
     })
   }
 }
+
 export default defineComponent({
   name: 'Demo1',
   components: {},
@@ -51,21 +77,19 @@ export default defineComponent({
   mounted () {
 
     const engine = new CustomEngine()
-    console.log()
-    engine.camera.position.y = 3
-    engine.camera.position.z = 20
+
     this.engine = engine
     /**
      * * *******************
      * * TITLE
      * * *******************
      */
-    const text = new AnimatedText3D('Shooting Stars', {
-      color: '#dc2c5a',
+    const text = new AnimatedText3D('Confetti', {
+      // color: '#0f070a',
+      color: '#000000',
       size: 0.8
     })
     text.position.x -= text.basePosition * 0.5
-    // text.position.y -= 0.5;
     engine.add(text)
 
     /**
@@ -85,14 +109,6 @@ export default defineComponent({
       STATIC_PROPS
     )
     engine.add(lineGenerator)
-
-    /**
-     * * *******************
-     * * STARS
-     * * *******************
-     */
-    const stars = new Stars()
-    engine.add(stars)
 
     /**
      * * *******************
@@ -128,20 +144,7 @@ export default defineComponent({
 <style lang="stylus" scoped>
 gradientMargin = 800px;
 
-.demo1{
-  position fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: "calc(100% + %s)" % gradientMargin;
-  --color-text: #fff;
-  --color-bg: #0e0e0f;
-  --color-bg-2: #242635;
-  --color-bg-3: #dc2c5a;
-  --color-link: #dc2c5a;
-  --color-link-hover: #ff0060;
-  // background: linear-gradient(200deg, var(--color-bg) 0%, var(--color-bg-2) 80%, var(--color-bg-3) 150%);
-  background: radial-gradient(ellipse at 500% 0%, var(--color-bg) 50%, var(--color-bg-2) 80%, var(--color-bg-3) 100%);
-  transform: translateY(-(gradientMargin));
-}
+// @import 'demo1';
+.demo-page
+  height 100%
 </style>

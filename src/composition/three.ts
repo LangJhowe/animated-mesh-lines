@@ -11,14 +11,16 @@ interface BaseThree {
   handleResize(e: HTMLElement):any;
   orbitControls: OrbitControls|null
 }
+
 interface UseThreeParam {
   cameraType?: string
   alpha?: boolean
   clearColor?: string|number|THREE.Color
 }
+const defs:UseThreeParam = { cameraType: 'o' }
+
 function useThree (useThreeParam:UseThreeParam):any {
-// function useThree ({ cameraType = 'o', alpha = false, clearColor } = {}):any {
-  const { cameraType, alpha, clearColor } = useThreeParam
+  const { cameraType, alpha, clearColor } = { ...defs, ...useThreeParam }
   const baseThree: BaseThree = {
     dom: null,
     renderer: new THREE.WebGLRenderer({ antialias: true, alpha }),
@@ -50,10 +52,9 @@ function useThree (useThreeParam:UseThreeParam):any {
     if (state.dom) {
       state.renderer.setSize(state.dom.clientWidth, state.dom.clientHeight)
       if(clearColor) {
-        // state.renderer.setClearColor(clearColor)
-        // state.renderer.setClearColor(clearColor)
+        state.renderer.setClearColor(clearColor)
+        state.renderer.setClearColor(clearColor)
       }
-      // state.renderer.setClearColor(0xffffffff)
 
       state.dom.appendChild(state.renderer.domElement)
       // if(state.renderer.domElement) {
@@ -63,14 +64,13 @@ function useThree (useThreeParam:UseThreeParam):any {
   // fov = 75, near = 1, far = 1000
   function initCamera () {
     if (state.dom) {
-      if(cameraType == 'f') {
+      if(cameraType == 'p') {
         const fov = arguments[0] || 75,
               near = arguments[1] || 1,
               far = arguments[2] || 1000
         const aspect = state.dom.clientWidth / state.dom.clientHeight
         state.camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
         state.camera.position.z = 20
-        console.log(toRaw(state.camera), toRaw(state.dom))
 
         state.orbitControls = new OrbitControls(
           toRaw(state.camera),
@@ -99,7 +99,7 @@ function useThree (useThreeParam:UseThreeParam):any {
     requestAnimationFrame(animate)
     state.animateCallback()
     if(state.camera) {
-      if(cameraType == 'f' && state.orbitControls) {
+      if(cameraType == 'p' && state.orbitControls) {
         state.orbitControls.update()
       }
       state.camera.updateProjectionMatrix()

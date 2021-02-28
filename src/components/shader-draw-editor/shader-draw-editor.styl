@@ -1,0 +1,39 @@
+.shader-draw-editor
+  background grey
+  .sde
+    // &__options
+    
+    &__panel
+      display flex
+      min-height 500px
+      &-editor
+        flex 1
+        textarea
+          padding 0
+          width 100%
+          height inherit
+          border none
+          min-height 100%
+          resize none
+      
+      &-previewer
+        position relative
+        flex 1
+        width 0
+        background #292c34;
+        overflow scroll  
+    &__error
+      position absolute
+      top 0
+      left 0 
+      right 0
+      left 0
+      background #000
+      p 
+       height 100%
+       padding-left 2em
+       color red
+       font-size 3em
+       margin 0
+    
+  

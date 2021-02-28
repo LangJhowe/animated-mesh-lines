@@ -24,6 +24,50 @@ const routes: Array<RouteRecordRaw> = [
         path: 'demo1',
         name: 'MeshLine1',
         component: () => import('@/views/mesh-line/demo1.vue')
+      },
+      {
+        path: 'demo2',
+        name: 'MeshLine2',
+        component: () => import('@/views/mesh-line/demo2.vue')
+      },
+      {
+        path: 'demo3',
+        name: 'MeshLine3',
+        component: () => import('@/views/mesh-line/demo3.vue')
+      },
+      {
+        path: 'demo4',
+        name: 'MeshLine4',
+        component: () => import('@/views/mesh-line/demo4.vue')
+      },
+      {
+        path: 'demo5',
+        name: 'MeshLine5',
+        component: () => import('@/views/mesh-line/demo5.vue')
+      }
+    ]
+  },
+  {
+    path: '/shader-draw-editor',
+    redirect: '/shader-draw-editor/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'ShaderDrawEditorDemoPage',
+        component: () => import('@/views/shader-draw-Editor/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/lab',
+    redirect: '/lab/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Lab',
+        component: () => import('@/views/lab/index.vue')
       }
     ]
   }

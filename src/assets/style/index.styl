@@ -1,6 +1,9 @@
 @import './font/index.styl';
+@import './mixins.styl'
 
 /*
+  css alias貌似还不能用
+  https://github.com/vitejs/vite/issues/360
   为什么放到 /font/index.styl 
   字体路径异常,偶尔需要刷新该文件才能显示字体
   在该文件路径为'/src/assets/style/font/Rhyder.woff'
@@ -9,3 +12,9 @@
 @font-face 
   font-family 'Rhyder'
   src  url('./font/Rhyder.woff') format('woff')
+  
+flexLayout(a=unset,j=unset) {
+  display flex
+  justify-content j
+  align-items a
+}
