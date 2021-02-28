@@ -1,5 +1,6 @@
 
 import * as Monaco from 'monaco-editor'
+
 /* monaco (官方文档https://microsoft.github.io/monaco-editor/index.html)
   official support language(https://github.com/microsoft/monaco-languages/tree/master/src)
    * monaco不支持自定义语言 标记 函数名颜色(预查正则无作用)

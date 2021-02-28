@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw, createWebHashHistory } from 'vue-router'
 import Index from '@/views/index/index.vue'
 import Layout from '@/layout/index.vue'
 
@@ -55,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'index',
         name: 'ShaderDrawEditorDemoPage',
-        component: () => import('@/views/shader-draw-Editor/index.vue')
+        component: () => import('@/views/shader-draw-editor/index.vue')
       }
     ]
   },
