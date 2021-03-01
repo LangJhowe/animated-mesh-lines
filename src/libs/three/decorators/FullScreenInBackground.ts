@@ -4,7 +4,7 @@
  * @Author: Jhowe
  * @Date: 2020-09-21 08:32:53
  * @LastEditors: Jhowe
- * @LastEditTime: 2020-09-24 15:59:04
+ * @LastEditTime: 2021-03-02 00:08:39
  */
 
 export default function FullScreenInBackground (opts:Record<string, any>):any {
@@ -35,6 +35,8 @@ export default function FullScreenInBackground (opts:Record<string, any>):any {
         this.resize()
       }
       resize () {
+        console.log('r', window.innerHeight)
+
         super.resize(window.innerWidth, window.innerHeight)
       }
     }

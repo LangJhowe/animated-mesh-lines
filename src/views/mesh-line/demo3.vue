@@ -155,14 +155,6 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 gradientMargin = 800px;
-body {
-  --color-text: #fff;
-  --color-bg: #0e0e0f;
-  --color-bg-2: #242635;
-  --color-bg-3: #dc2c5a;
-  --color-link: #dc2c5a;
-  --color-link-hover: #ff0060;
-}
 // @import 'demo1';
 .demo-page
   height 100%

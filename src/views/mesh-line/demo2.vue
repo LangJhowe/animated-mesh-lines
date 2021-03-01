@@ -142,9 +142,17 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-gradientMargin = 800px;
-
-// @import 'demo1';
-.demo-page
-  height 100%
+.demo2 {
+  position fixed
+  top 0
+  left 0
+  width 100vw
+  height 100vh
+  --color-text: #0f070a;
+	--color-bg: #ffffff;
+	--color-bg-2: #ecc7d5;
+	--color-link: #4062BB;
+	--color-link-hover: #52489C;
+	background: radial-gradient(ellipse at 75% 0%, var(--color-bg) 50%, var(--color-bg-2) 250%);
+}
 </style>

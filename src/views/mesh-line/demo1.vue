@@ -1,8 +1,9 @@
 <template>
-  <div class="demo1 demo-page" :id="'demo1'" v-resize="handleResize" style="transform: matrix(1, 0, 0, 1, 0, -300);"></div>
+  <div class="demo1 demo-page" :id="'demo1'"></div>
 </template>
 
 <script lang="ts">
+// style = 'transform: matrix(1, 0, 0, 1, 0, -300);'
 import { defineComponent } from 'vue'
 import * as THREE from 'three'
 import Engine from '@/libs/three/utils/Engine'
@@ -10,9 +11,8 @@ import AnimatedText3D from '@/libs/three/AnimatedText3D'
 import Stars from '@/libs/three/object/Stars.class'
 import AnimatedMeshLine from '@/libs/three/AnimatedMeshLine.class'
 import LineGenerator from '@/libs/three/LineGenerator.class'
-import { useThree } from '@/composition/three'
 import getRandomFloat from '@/libs/three/utils/getRandomFloat'
-import { TimelineLite, Power2, Power3 } from 'gsap'
+import { TimelineLite, Power2 } from 'gsap'
 import FullScreenInBackground from '@/libs/three/decorators/FullScreenInBackground'
 import HandleOrbitControl from '@/libs/three/decorators/HandleOrbitControl'
 
@@ -38,12 +38,7 @@ export default defineComponent({
   components: {},
   props: {},
   setup ():any {
-    let { state, init } = useThree({ cameraType: 'p', alpha: true })
-    return {
-      id: 'demo1',
-      state,
-      init
-    }
+    return { id: 'demo1' }
   },
   data () {
     return { engine: new CustomEngine() }
@@ -51,7 +46,6 @@ export default defineComponent({
   mounted () {
 
     const engine = new CustomEngine()
-    console.log()
     engine.camera.position.y = 3
     engine.camera.position.z = 20
     this.engine = engine
@@ -65,7 +59,6 @@ export default defineComponent({
       size: 0.8
     })
     text.position.x -= text.basePosition * 0.5
-    // text.position.y -= 0.5;
     engine.add(text)
 
     /**
@@ -117,31 +110,30 @@ export default defineComponent({
     )
     tlShow.add(text.show, '-=1')
   },
-  methods: {
-    handleResize (e: HTMLElement):void {
-
-    }
-  }
+  methods: {}
 })
 </script>
 
 <style lang="stylus" scoped>
 gradientMargin = 800px;
-
+.demo-page
+  overflow: hidden;
 .demo1{
-  position fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: "calc(100% + %s)" % gradientMargin;
   --color-text: #fff;
   --color-bg: #0e0e0f;
   --color-bg-2: #242635;
   --color-bg-3: #dc2c5a;
   --color-link: #dc2c5a;
   --color-link-hover: #ff0060;
+  position absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  // height: "calc(100% + %s)" % gradientMargin;
+  height 100vh
   // background: linear-gradient(200deg, var(--color-bg) 0%, var(--color-bg-2) 80%, var(--color-bg-3) 150%);
-  background: radial-gradient(ellipse at 500% 0%, var(--color-bg) 50%, var(--color-bg-2) 80%, var(--color-bg-3) 100%);
-  transform: translateY(-(gradientMargin));
+  background: radial-gradient(ellipse at 200% 0%, var(--color-bg) 50%, var(--color-bg-2) 80%, var(--color-bg-3) 100%);
+  // z-index: -2;
+  // transform: translateY(-(gradientMargin));
 }
 </style>
